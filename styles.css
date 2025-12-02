@@ -1,0 +1,79 @@
+/* Make the GIF background cover the page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    flex-direction: column;
+
+    /* Background GIF */
+    background: url("https://i.pinimg.com/originals/d5/84/0b/d5840b194bc468e606984aa99f6558c8.gif") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Optional: overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 249, 196, 0.3); /* subtle canary yellow overlay */
+    z-index: 0;
+}
+
+.container {
+    position: relative; /* above overlay */
+    z-index: 1;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2fd39c;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* improves readability */
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.yes-button, .no-button {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes-button {
+    margin-right: 10px;
+    background-color: #4c98af;
+    color: white;
+}
+
+.yes-button:hover {
+    transform: scale(1.05);
+}
+
+.no-button {
+    background-color: #cf4a4a;
+    color: white;
+}
+
+.no-button:hover {
+    transform: scale(1.05);
+}
+
+.gif_container img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    z-index: 1;
+    position: relative;
+}

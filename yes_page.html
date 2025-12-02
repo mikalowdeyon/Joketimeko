@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Takeru's show!!</title>
+<link rel="stylesheet" href="yes_style.css">
+</head>
+<body>
+<div class="container">
+    <!-- New GIF above header -->
+    <div class="top-gif">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTg1NWR5M3ZpMXA4amQ5ZWViM3VuZHZtbjRnMWxuOTV5bjd2Zzc2MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/1BeoHHs5ID6M1L95WT/giphy.gif" alt="Funny GIF">
+    </div>
+
+    <h1 class="header_text">Joke time!</h1>
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="flip-card-front">
+                <p class="title">JOKE CARD</p>
+                <p class="joke-setup" id="joke-setup">Ready ka na ba sa mga jokes ko?</p>
+            </div>
+            <div class="flip-card-back" id="flip-card-back">
+                <p class="title">Answer</p>
+                <p class="joke-punchline" id="joke-punchline">Dapat oo, ako na to eh!!</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="joke-btn" onclick="nextJoke()">Next Joke</button>
+    <audio id="pop-sound" src="https://freesound.org/data/previews/341/341695_5260874-lq.mp3"></audio>
+</div>
+
+<script>
+const jokes = [
+    {setup: "Ano ang tagalog ng theory?", punchline: "Edi Pasensya :D"},
+    {setup: "Bakit walang kwenta ang E, A, at C sa EACH?", punchline: "Kasi each!!"},
+    {setup: "Anong english ng 'mag pahinga ka na'?", punchline: "Edi guitarist"},
+    {setup: "Ano ang tawag sa sweet?", punchline: "Ako"},
+    {setup: "Mag ingay para sa ating paboritong mars!", punchline: "camille prats!"},
+    {setup: "Ano ang tawag sa layo ng edad niyo sa isa't isa?", punchline: "idgaf"},
+    {setup: "Ang tawag sa teacher na hindi nababasa ay?", punchline: "Water Proof"},
+    {setup: "Anong klase ng daga ang nakakatakot?", punchline: "BOO-rat"},
+    {setup: "Bakit hindi umiinom ng Juice ang mga pari?", punchline: "Kasi takot sila sa Juice"},
+    {setup: "Dinosaur na taga Pilipinas?", punchline: "ILOCOSaur"},
+    {setup: "Pag ba yung puto naging disrespectful ang tawag na is", punchline: "To"},
+    {setup: "Ang tagalog ng 'You nervous?' ay????????????", punchline: "Kabayo"},
+    {setup: "Anong ginagawa ng bulkan pag wala na siyang masuot?", punchline: "nag lalava"},
+    {setup: "Pag ba nag rent yung Korean, ang tawag dun ay", punchline: "oppa"},
+    {setup: "Titigas ba yung buhok ni Lapu-lapu pag Magellan?", punchline: "gets mo?"},
+    {setup: "May joke ako about sa Law, kaso...", punchline: "hehe"},
+    {setup: "Pag tinagalog mo ang pencil ay?", punchline: "walang isda"},
+    {setup: "Ano ang kasunod ng Earth?", punchline: "Showtime"},
+
+
+];
+
+// Card colors (subtle yellow)
+const frontColors = [
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)"
+];
+
+const backColors = [
+    "rgba(255, 253, 231, 0.6)",
+    "rgba(255, 253, 231, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 253, 231, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 253, 231, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 249, 196, 0.6)",
+    "rgba(255, 253, 231, 0.6)"
+];
+
+let jokeIndex = 0;
+
+function nextJoke() {
+    jokeIndex = (jokeIndex + 1) % jokes.length;
+    document.getElementById('joke-setup').textContent = jokes[jokeIndex].setup;
+    document.getElementById('joke-punchline').textContent = jokes[jokeIndex].punchline;
+
+    // Update card colors
+    document.getElementById('flip-card-front').style.background = frontColors[jokeIndex];
+    document.getElementById('flip-card-back').style.background = backColors[jokeIndex];
+
+    // Play pop sound
+    const sound = document.getElementById('pop-sound');
+    sound.currentTime = 0;
+    sound.play();
+}
+</script>
+</body>
+</html>
